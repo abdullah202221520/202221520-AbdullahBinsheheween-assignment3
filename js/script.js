@@ -77,7 +77,7 @@ async function fetchGitHubProjects() {
     const githubContainer = document.getElementById('github-repos');
     if (!githubContainer) return;
 
-    const username = 'abdullah1518';
+    const username = 'abdullah202221520';
     try {
         const response = await fetch(`https://api.github.com/users/${username}/repos?sort=updated&per_page=4`);
         if (!response.ok) {
