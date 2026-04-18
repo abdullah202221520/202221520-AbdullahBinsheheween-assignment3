@@ -1,8 +1,8 @@
-# Portfolio Website: SWE363 Assignment 1
+# Portfolio Website: SWE363 Assignment 3
 
 ## Project Description
 
-A responsive personal portfolio website built with HTML, CSS, and JavaScript. It includes a hero section, an about section, a projects showcase, a contact form, and a dark mode toggle. The site is structured for accessibility and works across different screen sizes.
+A responsive personal portfolio website built with HTML, CSS, and JavaScript. This project represents the Advanced Functionality iteration (Assignment 3) and includes a hero section, an about section, a projects showcase with dynamic filtering, a simulated contact form with real-time regex validation, dark mode and visitor caching via `localStorage`, and an asynchronous data fetch via the GitHub REST API. The site is structured for accessibility, works across different screen sizes, and is optimized for performance.
 
 ## Setup Instructions (Run Locally)
 

@@ -23,3 +23,10 @@
 * **Benefit:** Ensured that all project instructions are clear and saved time in manually formatting the README.md file.
 * **Learning outcome** I learned how to link to other files in markdown. I learned how to format code snippets in markdown to help users differntiate between code and text.
 * **Responsible Use & Modification:**  The AI only generated the formatting for the file, I filled in the rest of the file myself.
+
+## 5. API Integration and Advanced Logic (Assignment 3 Updates)
+* **Tool Used:** Gemini
+* **Use Case:** Generated the `fetch` logic for GitHub Repositories API, form validation regex, and `localStorage` state management for Dark Mode and visitor names.
+* **Benefit:** Quickly provided working implementations of asynchronous native fetch calls and persistent state without a backend.
+* **Learning Outcome:** Learned how to use `await fetch()` cleanly with try/catch error handling, how to query `localStorage` properly on DOM load, and how to set up active-state logic on filter buttons.
+* **Responsible Use & Modifications:** Rather than copying blindly, I structured the `script.js` logically into modules (State, Helper, Logic, Initialization) to ensure readability and maintainability.
