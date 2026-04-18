@@ -2,7 +2,7 @@
 
 ## Project Description
 
-A responsive personal portfolio website built with HTML, CSS, and JavaScript. This project represents the Advanced Functionality iteration (Assignment 3) and includes a hero section, an about section, a projects showcase with dynamic filtering, a simulated contact form with real-time regex validation, dark mode and visitor caching via `localStorage`, and an asynchronous data fetch via the GitHub REST API. The site is structured for accessibility, works across different screen sizes, and is optimized for performance.
+A responsive personal portfolio website built with HTML, CSS, and JavaScript. This project represents the Advanced Functionality iteration (Assignment 3) and includes a hero section with dynamic time-based greetings, an about section, a projects showcase with dynamic filtering, a simulated contact form with real-time regex validation, dark mode and visitor caching via `localStorage`, and an asynchronous data fetch via the GitHub REST API. The site is structured around a fluid, beautiful Glassmorphism UI aesthetic, is accessible across screen sizes, and is natively optimized for maximum performance.
 
 ## Setup Instructions (Run Locally)
 

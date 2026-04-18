@@ -1,14 +1,14 @@
-# Technical Documentation
+# Technical Documentation: Assignment 3
 
 ## 1. Overview
 
-This portfolio is a static, client-side website built with **HTML5**, **CSS3**, and **vanilla JavaScript**. No frameworks, build tools, or server-side logic are used. The site is responsive and includes a dark mode toggle.
+This portfolio is a static, client-side website built with **HTML5**, **CSS3**, and **vanilla JavaScript**. It encompasses advanced functionalities for Assignment 3 including external API data fetching, LocalStorage state management, dynamic UI filtering, and complex Regex validation. It implements a premium glassmorphism aesthetic using responsive design.
 
 | Layer    | Technology        |
 |----------|-------------------|
 | Markup   | HTML5             |
-| Styling  | CSS3 (Flexbox, Grid) |
-| Behavior | Vanilla JavaScript |
+| Styling  | CSS3 (Flexbox, Grid, CSS Variables) |
+| Behavior | Vanilla JavaScript, Fetch API, LocalStorage |
 | Assets   | Images in `assets/images/` |
 
 ---
@@ -16,14 +16,14 @@ This portfolio is a static, client-side website built with **HTML5**, **CSS3**, 
 ## 2. Project Structure
 
 ```
-assignment-1/
+id-name-assignment3/
 ├── index.html          # Single-page structure
 ├── css/
-│   └── styles.css      # All styles (reset, layout, dark mode)
+│   └── styles.css      # All styles (variables, glassmorphism, layouts)
 ├── js/
-│   └── script.js       # Dark mode toggle
+│   └── script.js       # Advanced logic, state management, and API calls
 ├── assets/
-│   └── images/         # Project screenshots (e.g. ghostwriter.png, passwordToolKit.png)
+│   └── images/         # Project screenshots (e.g. ghostwriter.png, mahamma.png, homelab.png)
 └── docs/
     ├── ai-usage-report.md
     └── technical-documentation.md  # This file
@@ -33,88 +33,58 @@ assignment-1/
 
 ## 3. HTML Structure
 
-- **Doctype & meta:** `UTF-8`, viewport for responsive behavior, `lang="en"`.
-- **Sections (in order):**
-  - **Header:** `<nav>` with logo, in-page links (`#hero`, `#about`, `#projects`, `#contact`), and “Toggle Dark Mode” button.
+- **Doctype & Meta:** `UTF-8`, viewport for responsive behavior, `lang="en"`.
+- **Sections:**
+  - **Header:** `<nav>` with logo, links, and "Toggle Dark Mode" button.
   - **Main:**
-    - `#hero` — Welcome and short intro.
-    - `#about` — About Me text.
-    - `#projects` — `h2` + `.project-grid` of `.project-card` items (title, description, image).
-    - `#contact` — Form with `name`, `email`, `message` (labels associated via `for`/`id`), `required` attributes, `action="#"`, `method="post"`.
-  - **Footer:** Copyright text.
-
-- **Script:** Single external script: `js/script.js` (loaded at end of `<body>`).
-- **Images:** Project images are referenced from `assets/images/` (e.g. `placeholder.png`, or `ghostwriter.png` / `passwordToolKit.png` if you have renamed them). Each `<img>` has an `alt` attribute for accessibility.
+    - `#hero` — Introduction and visitor name prompt that populates via LocalStorage.
+    - `#about` — About Me section describing interests.
+    - `#projects` — Dynamic project grid with active `.filter-controls` (`All`, `Web`, `CLI`, `Infra`).
+    - `#github-section` — Asynchronous container populated by the Github REST API.
+    - `#contact` — Interactive form structured for regex JS validation feedback.
+  - **Footer:** Standard structural wrapper.
 
 ---
 
-## 4. CSS Architecture
+## 4. CSS Architecture & Glassmorphism
 
-### 4.1 Reset & base
+### 4.1 CSS Variables & Themes
+- Global theming is controlled via `:root` CSS variables handling `bg-primary`, `bg-secondary`, `nav-bg`, `text-main`, and `glass-bg` properties.
+- **Default (Light) Mode:** Utilizes white and off-white/grey adjacent backdrops with deep indigo accents.
+- **Dark Mode:** Toggling the `.dark-mode` class redefines these CSS variables instantly to `#251b4b` deep purple layouts.
 
-- Universal reset: `* { margin: 0; padding: 0; box-sizing: border-box; }`.
-- `body`: `sans-serif`, `line-height: 1.6`, default text color `#333`.
-
-### 4.2 Layout
-
-- **Navigation:** Flexbox (`display: flex`, `justify-content: space-between`, `align-items: center`). Logo on the left, list of links and button on the right; list items use `display: flex` and `gap`.
-- **Hero & About:** Flexbox column, centered content (`align-items: center`, `text-align: center`), vertical padding.
-- **Projects:** CSS Grid on `.project-grid`:
-  - `grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));`
-  - Cards wrap and grow on larger screens; on small screens they stack. No media queries needed for this behavior.
-- **Project cards:** Border, padding, border-radius, white background; internal flex column for consistent card layout.
-- **Contact form:** Flex column, `max-width: 500px`, `margin: 0 auto` for horizontal centering, `gap` between fields.
-- **Footer:** Centered text, padding, background color.
-
-### 4.3 Dark mode
-
-- Implemented by toggling a `.dark-mode` class on `<body>` from JavaScript.
-- Dark theme overrides:
-  - `body`: dark background (`#282c34`), light text (`#f2f4f5`).
-  - `nav` and `footer`: darker background (`#5c6370`).
-  - `.project-card`: transparent background, darker border.
-  - Form controls: dark background and border, light text.
-  - Nav links: accent color (e.g. `#c678dd`).
+### 4.2 Layout & Effects
+- **Glassmorphism:** Navigation menus and project cards employ `background: rgba(255,255,255,0.05)` and `backdrop-filter: blur(10px)` to achieve floating, translucent aesthetics.
+- **Hover States:** Project cards scale up (`transform: translateY(-8px)`) and cast dynamic box-shadows.
+- **Responsive Grids:** `grid-template-columns: repeat(auto-fit, minmax(320px, 1fr))` automatically restructures layout to fit mobile without any `@media` queries.
+- **Transitions:** Global `transition: background-color 0.3s, color 0.3s;` on structural DOM targets provides buttery-smooth dark-mode toggling across states.
 
 ---
 
-## 5. JavaScript
+## 5. JavaScript (Advanced Logic)
 
-- **`darkModeToggle()`:**  
-  `document.body.classList.toggle('dark-mode');`  
-  Called by the “Toggle Dark Mode” button’s `onclick`. No persistence (preference resets on reload); could be extended with `localStorage` if needed.
+### 5.1 State Management (`localStorage`)
+- **`darkModeToggle()`:** Modifies class lists and writes `theme` property to LocalStorage. On DOM Load, it checks memory to instantly apply preferences.
+- **`Visitor Name`:** Checks LocalStorage for a `visitorName` to swap out the default header, removing the prompt. Saves to memory either proactively via the hero button or passively when the form is submitted.
+
+### 5.2 API Integration
+- **`fetchGitHubProjects()`:** An `async` function using native `fetch()` against `https://api.github.com/users/abdullah202221520`. Displays a loading state, throws explicit errors for `catch` blocks if status codes fail, and injects HTML literal string templates natively into the DOM directly.
+
+### 5.3 Complex Logic Actions
+- **`setupFilters()`:** Traverses `.project-card` DOM attributes to compare against `data-filter` buttons. It uses `display: none` to instantly redraw category structures natively without reloading.
+- **`setupFormValidation()`:** Intercepts default form post actions (`event.preventDefault()`). It performs explicit length checking on variables and Regex strict matching (`/^[^\s@]+@[^\s@]+\.[^\s@]+$/`) on client emails, publishing success or error UI coloring without refreshing.
+- **`setGreeting()`:** Checks JS `Date().getHours()` to inject temporal "Good Morning/Evening" salutations.
 
 ---
 
-## 6. Assets
+## 6. Assets & Performance
 
-- **Location:** `assets/images/`.
-- **Usage:** Project cards display one image per project. In `index.html`, images are referenced by path (e.g. `assets/images/placeholder.png`). If you use `ghostwriter.png` and `passwordToolKit.png`, update the `src` (and keep `alt` text aligned with project names for accessibility).
+- **Lazy Loading:** All intensive `<img>` items invoke `loading="lazy"` tags.
+- **Imagery:** Locally hosts structured web/cli architecture implementations alongside graphical representations for Homelab setups, stored in `/assets/images`.
 
 ---
 
 ## 7. Accessibility
 
-- Semantic sections: `header`, `nav`, `main`, `section`, `footer`.
-- Headings hierarchy: one `h1`, then `h2` per section, `h3` per project.
-- Form: `<label for="...">` and matching `id` on inputs; `required` on required fields.
-- Images: descriptive `alt` (e.g. “Ghost Writer project”, “Password Toolkit project”).
-- Dark mode: contrast handled in CSS; toggle is a `<button>` (focusable and activatable by keyboard).
-
----
-
-## 8. Responsive Design
-
-- Viewport meta tag enables correct scaling on mobile.
-- Project grid is responsive via `repeat(auto-fit, minmax(300px, 1fr))`: columns appear when width allows, otherwise cards stack.
-- Nav uses flexbox with `gap`; on very small screens it may wrap or need future media-query adjustments (e.g. hamburger menu) if desired.
-
----
-
-## 9. Browser Support
-
-- Targets modern browsers that support:
-  - CSS Flexbox and Grid
-  - `classList.toggle`
-  - HTML5 form elements and attributes  
-  No polyfills or fallbacks are included.
+- Implements strict, well-structured nested logic tags (`<main>`, `<nav>`, `<section>`, `header`). No inline `<br>` styling structures out of place.
+- All non-ornamental pictures involve concise `alt="[describe image]"` identifiers.
