@@ -69,6 +69,17 @@ Once you have the website open in your browser, here is how you can interact wit
 5. **Test the Contact Form:** Go to the "Contact" section at the bottom. Try entering an invalid email or a message that is too short, and click "Send". Notice how the built-in validation catches the errors. Fill it out correctly to see the success message!
 6. **Scroll to Top:** If you are at the bottom of the page, click the floating `↑` button in the bottom right corner to smoothly scroll back to the top.
 
+## 🖲️ Button Functionality
+
+A comprehensive breakdown of the interactive buttons available throughout the website and their functionalities:
+
+* **Toggle Dark Mode:** Located in the navigation bar. Switches the website's color scheme between the default light theme and a customized dark theme. Your preference is saved across visits using local storage.
+* **Save Button:** Located in the hero section. Captures the name you enter in the input field, saves it locally, and updates the personalized greeting immediately.
+* **Project Filter Buttons (All, Web, CLI, Infra):** Located in the Projects section. Clicking these buttons dynamically filters the project grid to display only the selected category without reloading the page.
+* **View Code Links:** Located within the project cards. Acts as buttons that open a new tab directing you to the project's source code repository on GitHub.
+* **Send Button:** Located in the Contact section. Submits the contact form. Upon clicking, it triggers client-side validation to ensure the email format is correct and the message meets length requirements.
+* **Scroll to Top (↑):** A floating action button in the bottom right corner that appears after scrolling down. Clicking it smoothly animates the window scroll back to the very top of the page.
+
 ---
 
 ## 🤖 AI Usage Summary
