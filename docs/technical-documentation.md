@@ -1,8 +1,8 @@
-# Technical Documentation: Assignment 3
+# Technical Documentation: Assignment 4
 
 ## 1. Overview
 
-This portfolio is a static, client-side website built with **HTML5**, **CSS3**, and **vanilla JavaScript**. It encompasses advanced functionalities for Assignment 3 including external API data fetching, LocalStorage state management, dynamic UI filtering, and complex Regex validation. It implements a premium glassmorphism aesthetic using responsive design.
+This portfolio is a static, client-side website built with **HTML5**, **CSS3**, and **vanilla JavaScript**. It encompasses advanced functionalities for Assignment 4 including external API data fetching, LocalStorage state management, dynamic UI filtering, complex Regex validation, and modern micro-animations (Intersection Observer, typing effects). It implements a premium glassmorphism aesthetic using responsive design.
 
 | Layer    | Technology        |
 |----------|-------------------|
@@ -57,7 +57,7 @@ id-name-assignment3/
 - **Glassmorphism:** Navigation menus and project cards employ `background: rgba(255,255,255,0.05)` and `backdrop-filter: blur(10px)` to achieve floating, translucent aesthetics.
 - **Hover States:** Project cards scale up (`transform: translateY(-8px)`) and cast dynamic box-shadows.
 - **Responsive Grids:** `grid-template-columns: repeat(auto-fit, minmax(320px, 1fr))` automatically restructures layout to fit mobile without any `@media` queries.
-- **Transitions:** Global `transition: background-color 0.3s, color 0.3s;` on structural DOM targets provides buttery-smooth dark-mode toggling across states.
+- **Transitions & Animations:** Global `transition: background-color 0.3s, color 0.3s;` on structural DOM targets provides buttery-smooth dark-mode toggling across states. Additional `@keyframes` manage the custom cursor blinking for the typing effect, and CSS classes (`.fade-in-section.is-visible`) handle scroll-triggered fade-ups.
 
 ---
 
@@ -73,7 +73,8 @@ id-name-assignment3/
 ### 5.3 Complex Logic Actions
 - **`setupFilters()`:** Traverses `.project-card` DOM attributes to compare against `data-filter` buttons. It uses `display: none` to instantly redraw category structures natively without reloading.
 - **`setupFormValidation()`:** Intercepts default form post actions (`event.preventDefault()`). It performs explicit length checking on variables and Regex strict matching (`/^[^\s@]+@[^\s@]+\.[^\s@]+$/`) on client emails, publishing success or error UI coloring without refreshing.
-- **`setGreeting()`:** Checks JS `Date().getHours()` to inject temporal "Good Morning/Evening" salutations.
+- **`setGreeting()` & `setupTypingEffect()`:** Checks JS `Date().getHours()` to inject temporal salutations. The typing effect dynamically manipulates string indices to create a self-typing and deleting subtitle effect.
+- **`setupScrollAnimations()` & `setupScrollToTop()`:** Utilizes the highly performant `IntersectionObserver` to trigger CSS transforms when elements scroll into view, avoiding expensive `scroll` event listeners for the main sections. A `scroll` listener is used exclusively for toggling the visibility of the "Scroll to Top" floating button based on Y-axis offsets.
 
 ---
 

@@ -25,21 +25,22 @@
     <main>
         <section id="hero">
             <h1 id="greeting">Welcome to My Portfolio</h1>
-            <p>Hello<span id="visitor-name-display"></span>! I am a Computer Science student at KFUPM.</p>
+            <p>Hello<span id="visitor-name-display"></span>! I am a <span class="typing-container"
+                    id="typing-text">Computer Science Student</span></p>
             <div id="name-form-container" class="name-prompt">
                 <input type="text" id="visitor-name-input" placeholder="What's your name?">
                 <button onclick="saveVisitorName()">Save</button>
             </div>
         </section>
 
-        <section id="about">
+        <section id="about" class="fade-in-section">
             <h2>About Me</h2>
             <p>I am a passionate programmer with a strong background in mathematics and computer science. I have
                 participated in mathematics olympiads and mathematical competitions as well as multiple programming
                 bootcamps and programs. I am interested in cybersecurity, cloud computing and LLM development.</p>
         </section>
 
-        <section id="projects">
+        <section id="projects" class="fade-in-section">
             <h2>Projects</h2>
             <div class="filter-controls">
                 <button class="filter-btn active" data-filter="all">All</button>
@@ -50,8 +51,11 @@
             <div class="project-grid" id="project-container">
                 <div class="project-card infra">
                     <h3>Self-Hosted Home Lab</h3>
-                    <p>A personal home server infrastructure running an *arr stack, Pi-hole, Immich, Obsidian Live Sync, and multiple Minecraft servers. Everything is routed through a centralized homepage dashboard for easy access.</p>
-                    <img src="assets/images/homelab.png" alt="Home Lab Dashboard screenshot" loading="lazy" style="margin-top:auto;">
+                    <p>A personal home server infrastructure running an *arr stack, Pi-hole, Immich, Obsidian Live Sync,
+                        and multiple Minecraft servers. Everything is routed through a centralized homepage dashboard
+                        for easy access.</p>
+                    <img src="assets/images/homelab.png" alt="Home Lab Dashboard screenshot" loading="lazy"
+                        style="margin-top:auto;">
                 </div>
                 <div class="project-card web">
                     <h3>Mahamma</h3>
@@ -75,19 +79,20 @@
                     <a href="https://github.com/abdullah202221520/Password-Toolkit" target="_blank"
                         style="display:inline-block; margin-bottom:10px; text-decoration:none; color: #fff; background-color:#333; padding: 5px 10px; border-radius: 4px; font-size:0.9rem;">View
                         Code</a>
-                    <img src="assets/images/passwordToolKit.png" alt="Password Toolkit project" loading="lazy" style="margin-top:auto;">
+                    <img src="assets/images/passwordToolKit.png" alt="Password Toolkit project" loading="lazy"
+                        style="margin-top:auto;">
                 </div>
             </div>
         </section>
 
-        <section id="github-section">
+        <section id="github-section" class="fade-in-section">
             <h2>My GitHub Repositories</h2>
             <div id="github-repos" class="project-grid">
                 <p>Loading repositories...</p>
             </div>
         </section>
 
-        <section id="contact">
+        <section id="contact" class="fade-in-section">
             <h2>Contact</h2>
             <p>Feel free to reach out to me by filling out the form below.</p>
             <form id="contact-form">
@@ -108,8 +113,12 @@
     </main>
 
     <footer>
-        <p>&copy; 2024 Abdullah. All rights reserved.</p>
+        <p>&copy; 2026 Abdullah. All rights reserved.</p>
     </footer>
+
+    <!-- Scroll to Top Button -->
+    <button id="scrollToTopBtn" aria-label="Scroll to top">↑</button>
+
     <script src="js/script.js"></script>
 </body>
 

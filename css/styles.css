@@ -321,3 +321,69 @@ footer {
     color: var(--text-muted);
     transition: background-color 0.3s, border-color 0.3s;
 }
+
+/* 8. Animations & Interactivity */
+.fade-in-section {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+    will-change: opacity, transform;
+}
+
+.fade-in-section.is-visible {
+    opacity: 1;
+    transform: none;
+}
+
+/* Typing Effect */
+.typing-container {
+    display: inline-block;
+    border-right: 3px solid var(--accent);
+    padding-right: 5px;
+    white-space: nowrap;
+    overflow: hidden;
+    vertical-align: bottom;
+    color: var(--text-muted);
+    animation: blinkCursor 0.75s step-end infinite;
+}
+
+@keyframes blinkCursor {
+    from, to { border-color: transparent }
+    50% { border-color: var(--accent); }
+}
+
+/* Scroll to Top Button */
+#scrollToTopBtn {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    z-index: 99;
+    border: none;
+    outline: none;
+    background-color: var(--btn-bg);
+    color: var(--btn-text);
+    cursor: pointer;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    font-size: 24px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(20px);
+    transition: opacity 0.3s, transform 0.3s, background-color 0.3s, visibility 0.3s;
+}
+
+#scrollToTopBtn.show {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+#scrollToTopBtn:hover {
+    background-color: var(--accent-hover);
+    transform: translateY(-5px) scale(1.1);
+}

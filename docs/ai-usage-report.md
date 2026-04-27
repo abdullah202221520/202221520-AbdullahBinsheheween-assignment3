@@ -30,3 +30,10 @@
 * **Benefit:** Quickly provided working implementations of asynchronous native fetch calls and persistent state without a backend.
 * **Learning Outcome:** Learned how to use `await fetch()` cleanly with try/catch error handling, how to query `localStorage` properly on DOM load, and how to set up active-state logic on filter buttons.
 * **Responsible Use & Modifications:** Rather than copying blindly, I structured the `script.js` logically into modules (State, Helper, Logic, Initialization) to ensure readability and maintainability.
+
+## 6. Assignment 4 Polish and Micro-Animations
+* **Tool Used:** Gemini / ChatGPT
+* **Use Case:** Generated the `IntersectionObserver` logic for scroll-triggered `.fade-in-section` animations, the logic for the simulated typing effect cursor in the hero section, and the floating "Scroll to Top" button.
+* **Benefit:** Provided modern, visually appealing micro-animations that would have taken significant time to manually orchestrate using keyframes and scroll event listeners. The `IntersectionObserver` solution is also far more performant than binding to the `window.onscroll` event.
+* **Learning Outcome:** Gained a deep understanding of the `IntersectionObserver` API for tracking element visibility in the viewport. Learned how to create dynamic text animations by manipulating string indices with `setTimeout` recursion.
+* **Responsible Use & Modifications:** I adapted the AI-provided `IntersectionObserver` script to ensure it correctly targeted the specific HTML sections in my document. For the typing animation, I customized the string array to reflect my own personal skills and optimized the typing/deleting timing parameters to feel more natural.

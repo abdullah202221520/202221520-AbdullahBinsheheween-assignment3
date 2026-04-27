@@ -162,6 +162,81 @@ function setupFormValidation() {
     });
 }
 
+// ====== Scroll Animations ======
+function setupScrollAnimations() {
+    const fadeElements = document.querySelectorAll('.fade-in-section');
+    
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('is-visible');
+            }
+        });
+    }, { threshold: 0.1 });
+    
+    fadeElements.forEach(el => observer.observe(el));
+}
+
+// ====== Typing Effect ======
+function setupTypingEffect() {
+    const container = document.getElementById('typing-text');
+    if (!container) return;
+    
+    const words = ["Computer Science Student", "Passionate Programmer", "Tech Enthusiast"];
+    let wordIndex = 0;
+    let charIndex = 0;
+    let isDeleting = false;
+    
+    function type() {
+        const currentWord = words[wordIndex];
+        
+        if (isDeleting) {
+            container.textContent = currentWord.substring(0, charIndex - 1);
+            charIndex--;
+        } else {
+            container.textContent = currentWord.substring(0, charIndex + 1);
+            charIndex++;
+        }
+        
+        let typeSpeed = isDeleting ? 50 : 100;
+        
+        if (!isDeleting && charIndex === currentWord.length) {
+            typeSpeed = 2000; // Pause at the end
+            isDeleting = true;
+        } else if (isDeleting && charIndex === 0) {
+            isDeleting = false;
+            wordIndex = (wordIndex + 1) % words.length;
+            typeSpeed = 500; // Pause before new word
+        }
+        
+        setTimeout(type, typeSpeed);
+    }
+    
+    // Start typing effect
+    setTimeout(type, 1000);
+}
+
+// ====== Scroll to Top Button ======
+function setupScrollToTop() {
+    const topBtn = document.getElementById('scrollToTopBtn');
+    if (!topBtn) return;
+    
+    window.addEventListener('scroll', () => {
+        if (window.scrollY > 300) {
+            topBtn.classList.add('show');
+        } else {
+            topBtn.classList.remove('show');
+        }
+    });
+    
+    topBtn.addEventListener('click', () => {
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+        });
+    });
+}
+
 // ====== On Document Load Initialization ======
 document.addEventListener('DOMContentLoaded', function () {
     // 1. Initialize Theme from localStorage
@@ -177,6 +252,9 @@ document.addEventListener('DOMContentLoaded', function () {
     setupFilters();
     fetchGitHubProjects();
     setupFormValidation();
+    setupScrollAnimations();
+    setupTypingEffect();
+    setupScrollToTop();
 
     // 4. Smooth scrolling for navigation links
     const navLinks = document.querySelectorAll('nav a[href^="#"]');

@@ -1,0 +1,2 @@
+This is a placeholder for the presentation video (demo-video.mp4). 
+Please record a 5-7 minute video demonstrating your final portfolio web application, covering the key features, architecture, AI integration, and outcomes as specified in the assignment instructions. Replace this file with your actual .mp4 file before submitting.
